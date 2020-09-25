@@ -81,7 +81,7 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . 'dao/dao.php');
                                             <div class="row">
                                                
                                                 <div class="col-lg-9 text-right">
-                                                    <a href="#" class="btn btn-success"><i class="ti-export"></i> Agregar</a>
+                                                    <a href="../../controllers/peulotController.php?accion=insertarPeula" class="btn btn-success"><i class="ti-export"></i> Agregar</a>
                                                 </div>
                                             </div>
                                            
