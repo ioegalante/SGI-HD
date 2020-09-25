@@ -18,6 +18,20 @@ else
 echo"no se pudo conectar";
 }
 
+/////////////////// PEULOT ////////////////////////
+
+function insertarPeula($peula){
+
+     $conn = sqlsrv_connect($server,$base);
+     $query = "INSERT INTO Peulot (tema, subtema, modulo, racional , objetivos, metodologia, jomer, fecha, kvutza) 
+     values ($peula->tema, $peula->subtema, $peula->modulo, $peula->racional , $peula->objetivos, $peula->metodologia, $peula->jomer, $peula->fecha, $peula->kvutza) ";
+
+
+
+     sqlsrv_close($conn);
+
+}
+
 
 
 
