@@ -1,6 +1,6 @@
 <?php
 
-final class Peula{
+class Peula{
 
     public $id;
     public $modulo;
@@ -12,6 +12,11 @@ final class Peula{
     public $jomer;
     public $fecha;
     public $kvutza;
+
+
+    function __construct(){ 
+     
+     } 
 
     // function __construct($id,$modulo,$tema,$subtema,$racional,$objetivos,$metodologia,$jomer,$fecha,$kvutza){ 
     //     $this->id=$id; 

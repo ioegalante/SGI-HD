@@ -1,7 +1,5 @@
 
-    <?php
-    echo 'puca quiere a garu';
-    ?>
+   
 
         <script src="vendors/jquery/dist/jquery.min.js"></script>
         <script src="vendors/popper.js/dist/umd/popper.min.js"></script>

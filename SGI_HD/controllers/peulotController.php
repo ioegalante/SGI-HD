@@ -1,6 +1,5 @@
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"]. '../dao/dao.php');
-include '../models/Peula.php';
+include '../dao/dao.php';
 
 $accion = isset($_POST['accion']) ? $_POST['accion'] : $_GET['accion']; //RECIBO EL PARAMETRO ACCION
 
@@ -17,7 +16,7 @@ switch ($accion) {
         $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : $_GET['fecha'];
         $kvutza = isset($_POST['kvutza']) ? $_POST['kvutza'] : $_GET['kvutza'];
         
-        $p = new Peula();
+        
 
         $p->modulo = $modulo;
         $p->tema = $tema;
@@ -29,8 +28,10 @@ switch ($accion) {
         $p->fecha = $fecha;
         $p->kvutza = $kvutza;
 
-        echo dao::insertarPeula($p);
-        echo json_encode($p);
+        
+
+        // echo dao::insertarPeula($p);
+        // echo json_encode($p);
 
         break;
     case 'editarPeula':
@@ -40,7 +41,12 @@ switch ($accion) {
         //logica
         break;
     case 'obtenerPorKvutza':
-        //logica
+        $kvutza = 10;
+
+        echo 'bbbbbb';
+        traerPeulaPorKvutza($kvutza);
+        echo 'aaaaaa';
+
         break;
     case 'obtenerPorID':
         //logica
