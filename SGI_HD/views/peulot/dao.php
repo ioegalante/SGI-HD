@@ -109,15 +109,13 @@ function obtenerPeulaPorID($id) {
 function obtenerModulosPorTzevet($idTzevet){
    $pdo = connect();
  
-   $stmt = $pdo -> prepare("select DISTINCT modulos.idModulo, modulos.nombre from modulos inner join kvutzot on modulos.tzevet = kvutzot.tzevet where kvutzot.tzevet = :idTzevet");
- 
-   $stmt -> bindParam(':idTzevet',$idTzevet);
+   $stmt = $pdo -> prepare("CALL ObtenerModulosPorTzevet($idTzevet)");
  
    $stmt -> setFetchMode(PDO::FETCH_ASSOC);
  
    $stmt -> execute();
  
-   return $stmt -> fetch();
+   return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 }
 
@@ -135,6 +133,21 @@ function eliminarPeula($id){
 
    header('location: listadoPeulot.php');
 
+}
+
+function traerNombreModulo($idModulo){
+
+   $pdo = connect();
+ 
+   $stmt = $pdo -> prepare("SELECT nombre FROM modulos WHERE idModulo= :id");
+ 
+   $stmt -> bindParam(':id',$idModulo);
+ 
+   $stmt -> setFetchMode(PDO::FETCH_ASSOC);
+ 
+   $stmt -> execute();
+
+   return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>

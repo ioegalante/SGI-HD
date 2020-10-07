@@ -11,6 +11,9 @@
 
   $peulot = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
+  
+  
+    
 
 ?>
 
@@ -65,17 +68,20 @@
                                     </thead>
                                     <?php
                                         for ($i = 0; $i < count($peulot); $i++) {
+                                            
+                                            $nombre = traerNombreModulo($peulot[$i]['modulo'])
                                             ?>
                                             <tr>
-                                                <td><?php echo $peulot[$i]['modulo'] ?></td>
+                                                
+                                                <td><?php echo $nombre[0]['nombre'] ?></td>
                                                 <td><?php echo $peulot[$i]['tema'] ?></td>
                                                 <td><?php echo $peulot[$i]['fecha'] ?></td>
                                                 
 
                                                 <td>
-                                                    <a href="#" class="btn btn-warning"><i class="fa fa-eye"></i> Ver</a>
+                                                    <a href="verPeula.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-warning"><i class="fa fa-eye"></i> Ver</a>
                                                     <a href="agregarPeula.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                                                    <a href="#" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</a>
+                                                    <a href="delete.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</a>
                                                 </td>
                                             </tr>
                                             <?php

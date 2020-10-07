@@ -6,17 +6,17 @@ include '../models/Peula.php';
 
 
 
-$server = "PC-IOE";
-$base = array( "Database"=>"sgihd");
+// $server = "PC-IOE";
+// $base = array( "Database"=>"sgihd");
 
-$conn = sqlsrv_connect($server,$base);
-if($conn){
-echo"conectado correctamente";
-}
-else
-{
-echo"no se pudo conectar";
-}
+// $conn = sqlsrv_connect($server,$base);
+// if($conn){
+// echo"conectado correctamente";
+// }
+// else
+// {
+// echo"no se pudo conectar";
+// }
 
 /////////////////// PEULOT ////////////////////////
 

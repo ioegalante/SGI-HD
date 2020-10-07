@@ -1,6 +1,26 @@
 <?php
-include '../../header.php';
-include_once ($_SERVER["DOCUMENT_ROOT"] . 'dao/dao.php');
+    include 'header.php';
+
+    include 'dao.php';
+
+    $pdo = connect();
+
+    $idPeula = $_GET['id'];
+
+    $stmt = $pdo -> prepare("CALL ObtenerPeulaPorID($idPeula)");
+
+    $stmt -> execute();
+
+    $peula = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    $mod = $peula[0]['modulo'];
+
+    $pdo2 = connect();
+    $stmt2 = $pdo2 -> prepare("CALL ObtenerModuloPorID($mod)");
+
+    $stmt2 -> execute();
+
+    $modulo = $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+    
 ?>
 
 <div class="breadcrumbs">
@@ -33,60 +53,47 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . 'dao/dao.php');
                             <div class="card">
 
                                 <div class="card-body card-block">
-                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    
 
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="select" class=" form-control-label">Módulo</label></div>
-                                            <div class="col-12 col-md-9">
-                                                <select name="select" id="select" class="form-control" disabled="true">
-                                                    <option value="0">p.modulo</option>
-                                                </select>
-                                            </div>
+                                        <div class="text-center">
+                                            <h5 class=""><?php echo $modulo[0]['nombre'] ?> </h5>
+                                            <h1 class=""><?php echo $peula[0]['tema'] ?></h1>
+
+                                            
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tojnit</label></div>
-                                            <div class="col-12 col-md-9"><input placeholder="p.tema" type="text" id="text-input" name="text-input" disabled="true" class="form-control"></div>
+                                        <?php if($peula[0]['subtema'] != null){ ?>
+                                        <div class="row form-group ml-3 mt-3">
+                                            <p><strong>Subtema: </strong><?php echo $peula[0]['subtema'] ?></p>
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Enfoque</label></div>
-                                            <div class="col-12 col-md-9"><input placeholder="p.Subtema" type="text" disabled="true" id="text-input" name="text-input" class="form-control"></div>
+                                        <?php }?>
+
+                                        <div class="row form-group ml-3 mt-3 mr-2">
+                                            <p><strong>Racional: </strong><?php echo $peula[0]['racional'] ?></p>
                                         </div>
 
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Racional</label></div>
-                                            <div class="col-12 col-md-9">
-                                                <textarea placeholder="p.Racional" name="textarea-input" disabled="true" id="textarea-input" rows="9" class="form-control"></textarea>
-                                            </div>
+                                        <div class="row form-group ml-3 mt-3 mr-2">
+                                            <p><strong>Objetivos: </strong><?php echo $peula[0]['objetivos'] ?></p>
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Objetivos</label></div>
-                                            <div class="col-12 col-md-9">
-                                                <textarea placeholder="p.Objetivos" name="textarea-input" disabled="true" id="textarea-input" rows="9" class="form-control"></textarea>
-                                            </div>
+
+                                        <div class="row form-group ml-3 mt-3 mr-2">
+                                            <p><strong>Metodología: </strong><?php echo $peula[0]['metodologia'] ?></p>                                            
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Metodología</label></div>
-                                            <div class="col-12 col-md-9">
-                                                <textarea placeholder="p.Metodologia" name="textarea-input" disabled="true" id="textarea-input" rows="9" class="form-control"></textarea>
-                                            </div>
+
+                                        <div class="row form-group ml-3 mt-3 mr-2">
+                                            <p><strong>Jomer: </strong><?php echo $peula[0]['jomer'] ?></p>                        
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Jomer</label></div>
-                                            <div class="col-12 col-md-9"><textarea placeholder="p.Jomer" name="textarea-input" disabled="true" id="textarea-input" rows="9" class="form-control"></textarea></div>
-                                        </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Fecha</label></div>
+                                        <div class="row form-group ml-3 mt-3 mr-2">
+                                            <p><strong>Fecha: </strong></p>  
                                             <div class="col-sm-4">
-                                                <input type="date" name="fPeula" step="1" min="2019-01-01" disabled="true" value="p.Fecha">
-                                            </div>
+                                                <input type="date" name="fPeula" step="1" min="2019-01-01" disabled="true" value="<?php echo $peula[0]['fecha'] ?>">
+                                            </div>                      
                                         </div>
+                                        
                                         <div class="card-footer text-right">
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="agregarPeula.php?id=<?php echo $peula[0]['idPeula']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
                                         </div>
 
 
-
-                                    </form>
                                 </div>
                             </div>
                         </div>

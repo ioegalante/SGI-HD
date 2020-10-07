@@ -6,13 +6,17 @@
   
   
   $modulos = obtenerModulosPorTzevet(3);
-  echo json_encode($modulos);
+ 
+  
+  
   
 
   if (isset($_GET['id'])) {
     $peula = obtenerPeulaPorID($_GET['id']);
   } else {
     $peula = array(
+    
+      "idPeula"=> "",
       "modulo" => '',
       "racional" => '',
       "tema" => '',
@@ -61,13 +65,10 @@
                                             <div class="col col-md-3"><label for="select" class=" form-control-label">Módulo</label></div>
                                             <div class="col-12 col-md-9">
                                                 <select name="modulo"  class="form-control">
-                                                <!-- php for ($i = 0; $i < count($modulos); $i++){ ?>
-                                                    <option value="?php echo $i?>">?php echo $modulos[$i]['nombre']; ?></option>
-                                                <php } ?> -->
-                                                <option value="0">Seleccionar Módulo</option>
-                                                <option value="1">modulo ejemplo</option>
-                                                <option value="2">modulo ejemplo2</option>
-                                                <option value="3">modulo ejemplo3</option>
+                                                 <?php for ($i = 0; $i < count($modulos); $i++){ ?>
+                                                    <option value="<?php echo $modulos[$i]['idModulo']?>"><?php echo $modulos[$i]['nombre']; ?></option>
+                                                <?php } ?> 
+
                                                 </select>
                                             </div>
                                            
@@ -106,16 +107,17 @@
                                         <div class="card-footer">
                                             <div class="row">
                                                
-                                                <input type="hidden" name="idPeula" value="<?php echo $peula['idPeula']; ?>">
+                                                <input type="hidden" name="idPeula" value="<?php echo $peula['idPeula'] ?>">
 
                                                 <div class="col-lg-9 text-right">
                                                 <?php
+                                               
                                                 if (isset($_GET['id'])) {
                                                     $accion = 'Guardar';
                                                   } else {
                                                     $accion = 'Insertar';
                                                 }?>
-                                                    <input type="submit" value="<?php echo $accion?>"><i class="ti-export"></i> 
+                                                    <input type="submit" class="btn btn-success" value="<?php echo $accion?>"> 
                                                 </div>
 
                                                 
