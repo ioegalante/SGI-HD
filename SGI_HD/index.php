@@ -2,7 +2,7 @@
 include 'header.php';
 ?>
 
-<h1>hola</h1>
+<h1 class="ml-3">Bienvenido/a a SGI HD!</h1>
 
 
 
