@@ -34,7 +34,7 @@
 
     $stmt -> execute();
 
-    header('location: listadoPeulot.php');
+    header('location: Peula-Listar.php');
 
     
 

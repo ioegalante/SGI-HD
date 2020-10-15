@@ -1,9 +1,14 @@
 
 
 
-function eliminar(){
+function eliminar2(){
     
-    confirm("Estás seguro/a de que querés eliminar la peula?");
+    var conf = confirm("Estás seguro/a de que querés eliminar la peula?");
+    if (conf == true){
+
+        
+    }
+
 
 }                                                  
 

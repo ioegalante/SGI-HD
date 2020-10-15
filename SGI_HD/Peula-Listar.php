@@ -51,7 +51,7 @@
                                         <strong class="card-title"></strong>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <a href="agregarPeula.php" class="btn btn-success"><i class="fa fa-plus"></i> Agregar peula</a>
+                                        <a href="Peula-AgregarEditar.php" class="btn btn-success"><i class="fa fa-plus"></i> Agregar peula</a>
                                     </div>
 
                                 </div>
@@ -79,9 +79,9 @@
                                                 
 
                                                 <td>
-                                                    <a href="verPeula.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-warning"><i class="fa fa-eye"></i> Ver</a>
-                                                    <a href="agregarPeula.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                                                    <a href="delete.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</a>
+                                                    <a href="Peula-Ver.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-warning"><i class="fa fa-eye"></i> Ver</a>
+                                                    <a href="Peula-AgregarEditar.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                                    <a href="Peula-Delete.php?id=<?php echo $peulot[$i]['idPeula']?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -106,11 +106,9 @@
         </div><!-- .content -->
 
     
-</body>
-    
-</html>
+       
 
 <?php
-include 'bottom.php';
+    include 'bottom.php';
 ?>
 

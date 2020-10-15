@@ -90,7 +90,7 @@
                                         </div>
                                         
                                         <div class="card-footer text-right">
-                                            <a href="agregarPeula.php?id=<?php echo $peula[0]['idPeula']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="Peula-AgregarEditar.php?id=<?php echo $peula[0]['idPeula']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
                                         </div>
 
 

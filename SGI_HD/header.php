@@ -44,7 +44,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse " >
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="views/peulot/listadoPeulot.php" > <i class="menu-icon fa ti-write  " style="color: white;"></i>Peulot</a>
+                        <a href="Peula-Listar.php" > <i class="menu-icon fa ti-write  " style="color: white;"></i>Peulot</a>
                     </li>
                     <li>
                         <a href="#" style="color: white;"> <i class="menu-icon fa fa-users " style="color: white;"></i>Janijimot</a>
