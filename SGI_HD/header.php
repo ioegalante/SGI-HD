@@ -90,11 +90,11 @@
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     
                 </div>
-
+                        <!-- session -->
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
-                        <a class="mr-2">Iniciar Sesión</a>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="mr-2" href="Login-Ingresar.php">Iniciar Sesión</a>
+                        <a href="Login-Ingresar.php" <?php //class="dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"?>>
                             <img class="user-avatar rounded-circle" src="images/avatar/avatar.png" alt="User Avatar">
                         </a>
 

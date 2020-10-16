@@ -39,26 +39,26 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img class="align-content" src="images/logo.png" alt="">
                     </a>
                 </div>
                 <div class="login-form">
-                    <form>
+                    <form action="Login-Validar.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label>Usuario</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="text" name="idUsuario" class="form-control" placeholder="Usuario">
                         </div>
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="contraseña" class="form-control" placeholder="Contraseña">
                         </div>
                         <div class="checkbox">      
                             <label class="pull-right">
-                                <a href="#">Forgotten Password?</a>
+                                <a href="#">Olvidé mi contraseña</a>
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Entrar</button>
                                 
 
 
