@@ -46,11 +46,11 @@
                 <div class="login-form">
                     <form action="Login-Validar.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
-                            <label>Usuario</label>
+                            <label style="color: black"><b>Usuario</b></label>
                             <input type="text" name="idUsuario" class="form-control" placeholder="Usuario">
                         </div>
                         <div class="form-group">
-                            <label>Contraseña</label>
+                            <label style="color:black"><b>Contraseña</b></label>
                             <input type="password" name="contraseña" class="form-control" placeholder="Contraseña">
                         </div>
                         <div class="checkbox">      
@@ -58,7 +58,7 @@
                                 <a href="#">Olvidé mi contraseña</a>
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Entrar</button>
+                        <button type="submit" style="background-color:#FF0000;color:white" class="btn  btn-flat m-b-30 m-t-30">Entrar</button>
                                 
 
 

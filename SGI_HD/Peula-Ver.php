@@ -119,5 +119,5 @@
 
 
 <?php
-include '../../bottom.php';
+    include 'bottom.php';
 ?>

@@ -150,4 +150,13 @@ function traerNombreModulo($idModulo){
    return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 }
 
+$GLOBALS["idUsuarioGlobal"] =-1;
+function guardarID($id){
+
+   $GLOBALS["idUsuarioGlobal"] = $id;
+}
+function getID(){
+   
+   return $GLOBALS["idUsuarioGlobal"];
+}
 ?>

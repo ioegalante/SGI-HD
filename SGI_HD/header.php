@@ -1,3 +1,11 @@
+<?php
+
+    include 'dao.php';
+    $idUsuarioGlobal = getID();
+    echo $idUsuarioGlobal;
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="es">
 <head>
