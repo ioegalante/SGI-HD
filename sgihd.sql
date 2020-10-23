@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2020 a las 02:37:07
+-- Tiempo de generación: 23-10-2020 a las 17:35:01
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -28,6 +28,9 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarPeula` (IN `id` INT)  NO SQL
 DELETE FROM `peulot` WHERE `idPeula` = id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerKvutza` (IN `id` INT)  NO SQL
+SELECT * FROM `kvutzot` WHERE `idKvutza` = id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerModuloPorID` (IN `id` INT)  NO SQL
 SELECT * FROM `modulos` WHERE `idModulo` = id$$
 
@@ -36,6 +39,12 @@ SELECT * FROM `modulos` WHERE `tzevet` = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerPeulaPorID` (IN `id` INT)  NO SQL
 SELECT * FROM `peulot` WHERE `idPeula` = id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerPeulotPorKvutza` (IN `kvutza` INT)  NO SQL
+SELECT * FROM `peulot` WHERE `kvutza` = kvutza$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `traerUsuarioPorID` (IN `id` INT)  NO SQL
+SELECT * FROM `usuarios` WHERE `idUsuario` = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `validarUsuario` (IN `id` INT, IN `contra` VARCHAR(50))  NO SQL
 SELECT * FROM `usuarios` WHERE `idUsuario` = id and `contraseña` = sha(contra)$$
@@ -90,7 +99,8 @@ CREATE TABLE `modulos` (
 
 INSERT INTO `modulos` (`idModulo`, `tzevet`, `nombre`, `racional`, `objetivos`) VALUES
 (1, 3, 'modulo prueba', 'un racional cualquiera', 'unos objetivos cualquiera lol'),
-(2, 3, 'segundo de prueba', 'que se yo master', 'algunos debe tener');
+(2, 3, 'segundo de prueba', 'que se yo master', 'algunos debe tener'),
+(3, 2, 'atzlanismo', 'no', 'dominar el mundo');
 
 -- --------------------------------------------------------
 
@@ -116,7 +126,8 @@ CREATE TABLE `peulot` (
 --
 
 INSERT INTO `peulot` (`idPeula`, `tema`, `subtema`, `modulo`, `racional`, `objetivos`, `metodologia`, `jomer`, `kvutza`, `fecha`) VALUES
-(1, 'esto es un tema', 'esto no es un tema', 1, ' soy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racional', 'Ey! yo soy los objetivos', 'jaja hagan lo que quieran', 'una cartulina darling', 10, '2020-10-15');
+(1, 'esto es un tema', 'esto no es un tema', 1, ' soy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racionalsoy un racional', 'Ey! yo soy los objetivos', 'jaja hagan lo que quieran', 'una cartulina darling', 10, '2020-10-15'),
+(2, 'vamo atzla', 'que grande atzla', 3, 'que se yo', 'no gracias', 'hagan lo que quieran', 'zoom premium', 5, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -184,7 +195,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `tafkid`, `telefono`, `contraseña`, `kvutza`, `admin`) VALUES
 (44599213, 'Ioel', 'Galante', 1, '11 5152-2984', '700078ec98515558dbf112f629f65eaa49c17db1', 10, 1),
-(44598553, 'Julian', 'Taiter', 1, '11 4409-1525', 'bf5daf4a9d310ce86114cb2b34c0d4457a735a2f', 6, 1);
+(44598553, 'Julian', 'Taiter', 1, '11 4409-1525', 'bf5daf4a9d310ce86114cb2b34c0d4457a735a2f', 6, 1),
+(33016244, 'Lionel', 'Messi', 3, '11 7301-0000', 'a4ccfbdb886b7831465c5b11e2d070573b5461c8', NULL, 0);
 
 --
 -- Índices para tablas volcadas
@@ -234,13 +246,13 @@ ALTER TABLE `kvutzot`
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `idModulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idModulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `peulot`
 --
 ALTER TABLE `peulot`
-  MODIFY `idPeula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idPeula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tafkidim`
@@ -253,40 +265,6 @@ ALTER TABLE `tafkidim`
 --
 ALTER TABLE `tzvatim`
   MODIFY `idTzevet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
-
---
--- Metadatos
---
-USE `phpmyadmin`;
-
---
--- Metadatos para la tabla kvutzot
---
-
---
--- Metadatos para la tabla modulos
---
-
---
--- Metadatos para la tabla peulot
---
-
---
--- Metadatos para la tabla tafkidim
---
-
---
--- Metadatos para la tabla tzvatim
---
-
---
--- Metadatos para la tabla usuarios
---
-
---
--- Metadatos para la base de datos sgihd
---
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
