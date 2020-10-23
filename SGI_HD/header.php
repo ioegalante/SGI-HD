@@ -1,8 +1,11 @@
 <?php
 
     include 'dao.php';
-    $idUsuarioGlobal = getID();
-    echo $idUsuarioGlobal;
+    session_start();
+    $usuarioLogeado = 0;
+    if($_SESSION['idUsuario'] == null){
+       header('location: Login-Ingresar.php');
+    }
 
 ?>
 
@@ -51,6 +54,7 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse " >
                 <ul class="nav navbar-nav">
+                    
                     <li>
                         <a href="Peula-Listar.php" > <i class="menu-icon fa ti-write  " style="color: white;"></i>Peulot</a>
                     </li>
@@ -101,15 +105,16 @@
                         <!-- session -->
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
-                        <a class="mr-2" href="Login-Ingresar.php">Iniciar Sesión</a>
-                        <a href="Login-Ingresar.php" <?php //class="dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"?>>
+                    
+                        <a class="mr-2" ><?php echo $_SESSION['nombre'] ." " .$_SESSION['apellido'] ?></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="images/avatar/avatar.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i> Mi perfil</a>
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Ajustes</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Cerrar sesión</a>
+                            <a class="nav-link" href="Logout.php"><i class="fa fa-power-off"></i> Cerrar sesión</a>
                         </div>
                     </div>
                 </div>

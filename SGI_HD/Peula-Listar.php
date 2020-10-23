@@ -1,19 +1,10 @@
 <?php
     include 'header.php';
 
-  include 'dao.php';
-
-  $pdo = connect();
-
-  $stmt = $pdo -> prepare("SELECT * FROM Peulot");
-
-  $stmt -> execute();
-
-  $peulot = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-
-  
-  
-    
+    include 'dao.php';
+    session_start();
+    $peulot = obtenerPeulotPorKvutza($_SESSION['kvutza']);
+    $kvutza = obtenerKvutza($_SESSION['kvutza']);
 
 ?>
 
@@ -22,7 +13,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Peulot</h1>
+                        <h1>Peulot <?php echo $kvutza[0]['nombre'] ?></h1>
                     </div>
                 </div>
             </div>
