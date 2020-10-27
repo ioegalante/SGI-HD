@@ -1,8 +1,8 @@
 <?php
 
-    include 'dao.php';
+    
     session_start();
-    $usuarioLogeado = 0;
+    
     if($_SESSION['idUsuario'] == null){
        header('location: Login-Ingresar.php');
     }
@@ -54,13 +54,14 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse " >
                 <ul class="nav navbar-nav">
-                    
+                    <?php if ($_SESSION['tafkid'] == 1 || $_SESSION['tafkid'] == 6) {?>
                     <li>
                         <a href="Peula-Listar.php" > <i class="menu-icon fa ti-write  " style="color: white;"></i>Peulot</a>
                     </li>
                     <li>
-                        <a href="#" style="color: white;"> <i class="menu-icon fa fa-users " style="color: white;"></i>Janijimot</a>
+                        <a href="Janij-Listar.php" style="color: white;"> <i class="menu-icon fa fa-users " style="color: white;"></i>Janijimot</a>
                     </li>
+                    <?php } ?>
                     <li>
                         <a href="#" > <i class="menu-icon fa ti-basketball  " style="color: white;"></i>Sábados</a>
                     </li>

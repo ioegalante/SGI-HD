@@ -15,10 +15,10 @@ function obtenerPeulotPorKvutza($kvutza){
 
    $pdo = connect();
 
-   $stmt = $pdo -> prepare("CALL obtenerPeulotPorKvutza(:kvutza)");
-   $stmt -> bindParam(':kvutza', $kvutza);
+   $stmt = $pdo -> prepare("CALL obtenerPeulotPorKvutza($kvutza)");
    $stmt -> execute();
 
+   
    return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 }
 function obtenerPeulaPorID($id) {
@@ -89,5 +89,50 @@ function obtenerKvutza($kvutza){
    return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 }
+/////////////////// JANIJIM ////////////////////////
+
+function obtenerJanijimPorKvutza($kvutza){
+
+   $pdo = connect();
+
+   $stmt = $pdo -> prepare("CALL obtenerJanijimPorKvutza($kvutza)");
+   $stmt -> execute();
+
+   
+   return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+}
+function obtenerJanijPorID($id){
+
+   $pdo = connect();
+
+   $stmt = $pdo -> prepare("CALL obtenerJanijPorID($id)");
+   $stmt -> execute();
+
+   
+   return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+}
+function obtenerResponsablePorJanij($janij){
+
+   $pdo = connect();
+
+   $stmt = $pdo -> prepare("CALL obtenerIdResponsable($janij)");
+   $stmt -> execute();
+   $id = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+
+   $pdo2 = connect();
+
+   $idResponsable = $id[0]['idResponsable'];
+   $stmt2 = $pdo2 -> prepare("CALL obtenerResponsablesPorJanij($idResponsable)");
+   $stmt2 -> execute();
+
+   
+   return $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+
+
+
 
 ?>

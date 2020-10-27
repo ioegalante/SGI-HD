@@ -35,14 +35,18 @@
         $_SESSION['apellido']  = $usuario[0]['apellido'];
         $_SESSION['tafkid']  = $usuario[0]['tafkid'];
         if ($usuario[0]['kvutza'] == null){
-            $_SESSION['kvutza']  = -1;
+            $_SESSION['kvutza']  = null;
         }else{
             $_SESSION['kvutza']  = $usuario[0]['kvutza'];
         }
         $_SESSION['contra']  = $usuario[0]['contra'];
         $_SESSION['telefono']  = $usuario[0]['telefono'];
         $_SESSION['admin']  = $usuario[0]['admin'];
-
+        if ($usuario[0]['tzevet'] == null){
+            $_SESSION['tzevet']  = null;
+        }else{
+            $_SESSION['tzevet']  = $usuario[0]['tzevet'];
+        }
         header('location: index.php');
 
         

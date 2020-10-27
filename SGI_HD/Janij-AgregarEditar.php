@@ -4,13 +4,8 @@
   include('dao.php');
   include('header.php');
   
-  $kvutza = obtenerKvutza($_SESSION['kvutza']);
-  $modulos = obtenerModulosPorTzevet($kvutza[0]['tzevet']);
+  
  
-  
-  
-  
-
   if (isset($_GET['id'])) {
     $peula = obtenerPeulaPorID($_GET['id']);
   } else {
