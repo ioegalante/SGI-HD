@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2020 a las 00:50:54
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.10
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 30-10-2020 a las 18:08:50
+-- Versión del servidor: 5.7.21
+-- Versión de PHP: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sgihd`
 --
-CREATE DATABASE IF NOT EXISTS `sgihd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `sgihd`;
 
 DELIMITER $$
 --
@@ -65,7 +64,7 @@ SELECT * FROM `peulot` WHERE `kvutza` = id$$
 
 DROP PROCEDURE IF EXISTS `obtenerResponsablesPorJanij`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerResponsablesPorJanij` (IN `id` INT)  NO SQL
-SELECT * FROM `responsables` inner join `responsablePorJanij` on `responsableporjanij.idResponsable`= `resposables.idResponsable` INNER JOIN `janijim` on `responsableporjanij.idJanij` = `janijim.idJanij` WHERE `responsableporjanij.idJanij` = id$$
+SELECT * FROM `janijim` inner join `responsableporjanij` on `janijim.idJanij` = `responsableporjanij.idJanij` inner join `responsables` on `responsableporjanij.idResponsable` = `responsables.idResponsable` WHERE `janijim.idJanij` = id$$
 
 DROP PROCEDURE IF EXISTS `obtenerResponsablesPorJanij2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerResponsablesPorJanij2` (IN `id` INT)  NO SQL
@@ -88,7 +87,7 @@ DELIMITER ;
 --
 
 DROP TABLE IF EXISTS `janijim`;
-CREATE TABLE `janijim` (
+CREATE TABLE IF NOT EXISTS `janijim` (
   `idJanij` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
@@ -97,7 +96,8 @@ CREATE TABLE `janijim` (
   `escuela` varchar(100) NOT NULL,
   `telefono` varchar(50) DEFAULT NULL,
   `mail` varchar(50) DEFAULT NULL,
-  `observaciones` varchar(1500) DEFAULT NULL
+  `observaciones` varchar(1500) DEFAULT NULL,
+  PRIMARY KEY (`idJanij`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -114,11 +114,12 @@ INSERT INTO `janijim` (`idJanij`, `nombre`, `apellido`, `kvutza`, `fechaNac`, `e
 --
 
 DROP TABLE IF EXISTS `kvutzot`;
-CREATE TABLE `kvutzot` (
-  `idKvutza` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `kvutzot` (
+  `idKvutza` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `tzevet` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `tzevet` int(11) NOT NULL,
+  PRIMARY KEY (`idKvutza`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `kvutzot`
@@ -143,13 +144,14 @@ INSERT INTO `kvutzot` (`idKvutza`, `nombre`, `tzevet`) VALUES
 --
 
 DROP TABLE IF EXISTS `modulos`;
-CREATE TABLE `modulos` (
-  `idModulo` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `modulos` (
+  `idModulo` int(11) NOT NULL AUTO_INCREMENT,
   `tzevet` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `racional` mediumtext NOT NULL,
-  `objetivos` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `objetivos` mediumtext NOT NULL,
+  PRIMARY KEY (`idModulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `modulos`
@@ -167,8 +169,8 @@ INSERT INTO `modulos` (`idModulo`, `tzevet`, `nombre`, `racional`, `objetivos`) 
 --
 
 DROP TABLE IF EXISTS `peulot`;
-CREATE TABLE `peulot` (
-  `idPeula` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `peulot` (
+  `idPeula` int(11) NOT NULL AUTO_INCREMENT,
   `tema` varchar(100) NOT NULL,
   `subtema` varchar(150) DEFAULT NULL,
   `modulo` int(11) NOT NULL,
@@ -177,8 +179,9 @@ CREATE TABLE `peulot` (
   `metodologia` mediumtext NOT NULL,
   `jomer` varchar(500) DEFAULT NULL,
   `kvutza` int(11) NOT NULL,
-  `fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`idPeula`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `peulot`
@@ -195,7 +198,7 @@ INSERT INTO `peulot` (`idPeula`, `tema`, `subtema`, `modulo`, `racional`, `objet
 --
 
 DROP TABLE IF EXISTS `responsableporjanij`;
-CREATE TABLE `responsableporjanij` (
+CREATE TABLE IF NOT EXISTS `responsableporjanij` (
   `idResponsable` int(11) NOT NULL,
   `idJanij` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -214,14 +217,15 @@ INSERT INTO `responsableporjanij` (`idResponsable`, `idJanij`) VALUES
 --
 
 DROP TABLE IF EXISTS `responsables`;
-CREATE TABLE `responsables` (
+CREATE TABLE IF NOT EXISTS `responsables` (
   `idResponsable` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `telefono` varchar(50) NOT NULL,
   `mail` varchar(50) NOT NULL,
   `relacion` varchar(50) NOT NULL,
-  `observaciones` varchar(5000) DEFAULT NULL
+  `observaciones` varchar(5000) DEFAULT NULL,
+  PRIMARY KEY (`idResponsable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -239,10 +243,11 @@ INSERT INTO `responsables` (`idResponsable`, `nombre`, `apellido`, `telefono`, `
 --
 
 DROP TABLE IF EXISTS `tafkidim`;
-CREATE TABLE `tafkidim` (
-  `idTafkid` int(11) NOT NULL,
-  `nombreTafkid` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `tafkidim` (
+  `idTafkid` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreTafkid` varchar(50) NOT NULL,
+  PRIMARY KEY (`idTafkid`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tafkidim`
@@ -263,10 +268,11 @@ INSERT INTO `tafkidim` (`idTafkid`, `nombreTafkid`) VALUES
 --
 
 DROP TABLE IF EXISTS `tzvatim`;
-CREATE TABLE `tzvatim` (
-  `idTzevet` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `tzvatim` (
+  `idTzevet` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`idTzevet`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tzvatim`
@@ -284,7 +290,7 @@ INSERT INTO `tzvatim` (`idTzevet`, `nombre`) VALUES
 --
 
 DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE `usuarios` (
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `idUsuario` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
@@ -304,86 +310,6 @@ INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `tafkid`, `telefono`,
 (44599213, 'Ioel', 'Galante', 1, '11 5152-2984', '700078ec98515558dbf112f629f65eaa49c17db1', 10, NULL, 1),
 (44598553, 'Julian', 'Taiter', 1, '11 4409-1525', 'bf5daf4a9d310ce86114cb2b34c0d4457a735a2f', 6, NULL, 1),
 (33016244, 'Lionel', 'Messi', 6, '11 7301-0000', 'a4ccfbdb886b7831465c5b11e2d070573b5461c8', NULL, 3, 0);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `janijim`
---
-ALTER TABLE `janijim`
-  ADD PRIMARY KEY (`idJanij`);
-
---
--- Indices de la tabla `kvutzot`
---
-ALTER TABLE `kvutzot`
-  ADD PRIMARY KEY (`idKvutza`);
-
---
--- Indices de la tabla `modulos`
---
-ALTER TABLE `modulos`
-  ADD PRIMARY KEY (`idModulo`);
-
---
--- Indices de la tabla `peulot`
---
-ALTER TABLE `peulot`
-  ADD PRIMARY KEY (`idPeula`);
-
---
--- Indices de la tabla `responsables`
---
-ALTER TABLE `responsables`
-  ADD PRIMARY KEY (`idResponsable`);
-
---
--- Indices de la tabla `tafkidim`
---
-ALTER TABLE `tafkidim`
-  ADD PRIMARY KEY (`idTafkid`);
-
---
--- Indices de la tabla `tzvatim`
---
-ALTER TABLE `tzvatim`
-  ADD PRIMARY KEY (`idTzevet`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `kvutzot`
---
-ALTER TABLE `kvutzot`
-  MODIFY `idKvutza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `modulos`
---
-ALTER TABLE `modulos`
-  MODIFY `idModulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `peulot`
---
-ALTER TABLE `peulot`
-  MODIFY `idPeula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de la tabla `tafkidim`
---
-ALTER TABLE `tafkidim`
-  MODIFY `idTafkid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `tzvatim`
---
-ALTER TABLE `tzvatim`
-  MODIFY `idTzevet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
