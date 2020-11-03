@@ -109,7 +109,7 @@ function obtenerJanijPorID($id){
    $stmt -> execute();
 
    
-   return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+   return $stmt -> fetch();
 }
 function obtenerResponsablePorJanij($janij){
 

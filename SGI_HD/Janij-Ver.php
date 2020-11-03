@@ -43,11 +43,13 @@
                     <div class="col-md-12">
                         <div class="col-lg-12">
                             <div class="card">
-
+                                    <div class="col-md-12 mt-3 text-right">
+                                        <a href="#" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Responsable</a>
+                                    </div>
                                 <div class="card-body card-block">
                                     
                                         <div class="text-center">
-                                            <h1 class=""><?php echo $janij[0]['nombre'] .' ' .$janij[0]['apellido'] ?></h1>
+                                            <h1 class=""><?php echo $janij['nombre'] .' ' .$janij['apellido'] ?></h1>
                                         </div>
                                        
                                         <div class="ml-3">
@@ -57,32 +59,32 @@
                                         <div class="row form-group ml-3 mt-3 mr-2">
                                             <p><strong>Fecha de Nacimiento: </strong></p>  
                                             <div class="col-sm-4">
-                                                <input type="date" name="fPeula" step="1" disabled="true" value="<?php echo $janij[0]['fechaNac'] ?>">
+                                                <input type="date" name="fPeula" step="1" disabled="true" value="<?php echo $janij['fechaNac'] ?>">
                                             </div>                      
                                         </div>
 
                                         <div class="row form-group ml-3 mt-3 mr-2">
-                                            <p><strong>DNI: </strong><?php echo $janij[0]['idJanij'] ?></p>                        
+                                            <p><strong>DNI: </strong><?php echo $janij['idJanij'] ?></p>                        
                                         </div>
 
-                                        <?php if ($janij[0]['telefono'] != NULL){?>
+                                        <?php if ($janij['telefono'] != NULL){?>
                                         <div class="row form-group ml-3 mt-3">
-                                            <p><strong>Telefono: </strong><?php echo $janij[0]['telefono'] ?></p>
+                                            <p><strong>Telefono: </strong><?php echo $janij['telefono'] ?></p>
                                         </div>
                                         <?php } 
-                                        if ($janij[0]['mail'] != NULL){?>
+                                        if ($janij['mail'] != NULL){?>
                                         <div class="row form-group ml-3 mt-3 mr-2">
-                                            <p><strong>Mail: </strong><?php echo $janij[0]['mail'] ?></p>
+                                            <p><strong>Mail: </strong><?php echo $janij['mail'] ?></p>
                                         </div>
                                         <?php } ?>
 
                                         <div class="row form-group ml-3 mt-3 mr-2">
-                                            <p><strong>Escuela: </strong><?php echo $janij[0]['escuela'] ?></p>
+                                            <p><strong>Escuela: </strong><?php echo $janij['escuela'] ?></p>
                                         </div>
 
-                                        <?php if ($janij[0]['observaciones'] != NULL){?>
+                                        <?php if ($janij['observaciones'] != NULL){?>
                                                 <div class="row form-group ml-3 mt-3">
-                                                    <p><strong>Observaciones: </strong><?php echo $janij[0]['observaciones'] ?></p>
+                                                    <p><strong>Observaciones: </strong><?php echo $janij['observaciones'] ?></p>
                                                 </div>
                                         <?php }
 
@@ -115,7 +117,8 @@
                                         
                                         
                                         <div class="card-footer text-right">
-                                            <a href="Janij-AgregarEditar.php?id=<?php echo $janij[0]['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="Janij-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Janij</a>
+                                            <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Responsable(s)</a>
                                         </div>
 
 

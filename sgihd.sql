@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2020 a las 00:50:54
+-- Tiempo de generación: 03-11-2020 a las 23:37:40
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -27,9 +27,18 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `editarJanij`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `editarJanij` (IN `id` INT, IN `nombre` VARCHAR(50), IN `apellido` VARCHAR(50), IN `kvutza` INT, IN `escuela` VARCHAR(100), IN `fechaNac` DATE, IN `telefono` VARCHAR(15), IN `mail` VARCHAR(50), IN `obs` VARCHAR(1500))  NO SQL
+UPDATE `janijim` SET `nombre`=nombre,`apellido`=apellido,`kvutza`=kvutza,`fechaNac`=fechaNac,
+`escuela`=escuela,`telefono`=telefono,`mail`=mail,`observaciones`=obs WHERE `idJanij`=id$$
+
 DROP PROCEDURE IF EXISTS `EliminarPeula`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarPeula` (IN `id` INT)  NO SQL
 DELETE FROM `peulot` WHERE `idPeula` = id$$
+
+DROP PROCEDURE IF EXISTS `insertarJanij`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarJanij` (IN `id` INT, IN `nombre` VARCHAR(50), IN `apellido` VARCHAR(50), IN `kvutza` INT, IN `escuela` VARCHAR(100), IN `fechaNac` DATE, IN `telefono` VARCHAR(30), IN `mail` VARCHAR(50), IN `obs` VARCHAR(1500))  NO SQL
+INSERT INTO `janijim`(`idJanij`, `nombre`, `apellido`, `kvutza`, `fechaNac`, `escuela`, `telefono`, `mail`, `observaciones`) VALUES (id,nombre,apellido,kvutza,fechaNac,escuela,telefono,mail,obs)$$
 
 DROP PROCEDURE IF EXISTS `obtenerIdResponsable`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerIdResponsable` (IN `janij` INT)  NO SQL
@@ -65,7 +74,7 @@ SELECT * FROM `peulot` WHERE `kvutza` = id$$
 
 DROP PROCEDURE IF EXISTS `obtenerResponsablesPorJanij`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerResponsablesPorJanij` (IN `id` INT)  NO SQL
-SELECT * FROM `responsables` inner join `responsablePorJanij` on `responsableporjanij.idResponsable`= `resposables.idResponsable` INNER JOIN `janijim` on `responsableporjanij.idJanij` = `janijim.idJanij` WHERE `responsableporjanij.idJanij` = id$$
+SELECT * FROM `janijim` inner join `responsableporjanij` on `janijim.idJanij` = `responsableporjanij.idJanij` inner join `responsables` on `responsableporjanij.idResponsable` = `responsables.idResponsable` WHERE `janijim.idJanij` = id$$
 
 DROP PROCEDURE IF EXISTS `obtenerResponsablesPorJanij2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerResponsablesPorJanij2` (IN `id` INT)  NO SQL
@@ -105,7 +114,8 @@ CREATE TABLE `janijim` (
 --
 
 INSERT INTO `janijim` (`idJanij`, `nombre`, `apellido`, `kvutza`, `fechaNac`, `escuela`, `telefono`, `mail`, `observaciones`) VALUES
-(40513018, 'Julian', 'Barki', 10, '1998-08-04', 'ORT', '11 0312-1612', 'julian.barki@ort.edu.ar', 'se porta mal en peula');
+(40513018, 'Julian', 'Barki', 10, '2000-10-12', 'ORT', '11 0312-1612', 'julian.barki@ort.edu.ar', 'se porta muy mal en peula'),
+(49189511, 'Javier', 'Alfie', 6, '2008-11-01', 'Scholem Aleijem', '11 5327-8960', '', 'javito es javito');
 
 -- --------------------------------------------------------
 

@@ -114,7 +114,7 @@
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i> Mi perfil</a>
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> Ajustes</a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa-cog"></i> Ajustes</a> -->
                             <a class="nav-link" href="Logout.php"><i class="fa fa-power-off"></i> Cerrar sesión</a>
                         </div>
                     </div>

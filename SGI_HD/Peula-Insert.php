@@ -1,6 +1,6 @@
 <?php
     include 'dao.php';
-
+    session_start();
     $pdo = connect();
     
     if (isset($_POST['idPeula']) && $_POST['idPeula'] != "") {
@@ -18,9 +18,8 @@
     $metodologia = $_POST['metodologia'];
     $jomer = $_POST['jomer'];
     $fecha = $_POST['fecha'];
-    // $kvutza = $_POST['kvutza'];
+    $kvutza = $_SESSION['kvutza'];
 
-    $kvutza = 10;
 
     $stmt -> bindParam(':tema', $tema);
     $stmt -> bindParam(':subtema', $subtema);
