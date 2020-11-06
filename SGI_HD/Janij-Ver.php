@@ -44,7 +44,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                     <div class="col-md-12 mt-3 text-right">
-                                        <a href="#" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Responsable</a>
+                                        <a href="Responsable-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Responsable</a>
                                     </div>
                                 <div class="card-body card-block">
                                     
@@ -118,7 +118,7 @@
                                         
                                         <div class="card-footer text-right">
                                             <a href="Janij-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Janij</a>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Responsable(s)</a>
+                                            <a href="Responsable-AgregarEditar.php?=id<?php echo $janij['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Responsable(s)</a>
                                         </div>
 
 
