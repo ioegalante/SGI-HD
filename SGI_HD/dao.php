@@ -115,18 +115,21 @@ function obtenerResponsablePorJanij($janij){
 
    $pdo = connect();
 
-   $stmt = $pdo -> prepare("CALL obtenerIdResponsable($janij)");
+   $stmt = $pdo -> prepare("CALL obtenerResponsablesPorJanij($janij)");
    $stmt -> execute();
-   $id = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-
-   $pdo2 = connect();
-
-   $idResponsable = $id[0]['idResponsable'];
-   $stmt2 = $pdo2 -> prepare("CALL obtenerResponsablesPorJanij($idResponsable)");
-   $stmt2 -> execute();
 
    
-   return $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+   return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+}
+
+function obtenerRespPorID($id){
+
+   $pdo = connect();
+
+   $stmt = $pdo -> prepare("CALL obtenerRespPorID($id)"); 
+
+   
+   return $stmt -> fetch();
 }
 
 

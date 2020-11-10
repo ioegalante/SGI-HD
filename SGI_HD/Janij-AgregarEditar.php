@@ -64,13 +64,11 @@
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Apellido</label></div>
                                             <div class="col-12 col-md-9"><input type="text" value="<?php echo $janij['apellido']; ?>" name="apellido"  class="form-control"></div>
                                         </div>
-                                        <?php if(!isset($_GET['id'])){ ?>
+                                        
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">DNI</label></div>
                                             <div class="col-12 col-md-9"><input type="text" value="<?php echo $janij['idJanij']; ?>" name="idJanij"  class="form-control"></div>
                                         </div>
-                                        <?php } else{?>
-                                            <input type="hidden" name="idJanij" value="<?php echo $janij['idJanij']; }?>">
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Fecha de Nacimiento</label></div>
                                             <div class="col-sm-4">
@@ -97,7 +95,8 @@
                                             <div class="row">
                                                
                                                 <input type="hidden" name="kvutza" value="<?php echo $_SESSION['kvutza'] ?>">
-                                        
+                                                <input type="hidden" name="dniViejo" value="<?php echo $janij['idJanij'] ?>">
+
                                                 <div class="col-lg-12 text-right">
                                                 <?php
                                                

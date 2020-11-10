@@ -5,12 +5,14 @@
   include('header.php');
   
   
-    $janij = obtenerJanijPorID($_GET['id']);
+    $janij = obtenerJanijPorID($_GET['j']);
     
 
-  if (isset($_GET['res'])) {
-    $responsable = obtenerResponsablePorID($_GET['id']);
+  if (isset($_GET['r'])) {
+    $responsable = obtenerRespPorID($_GET['r']);
+    echo 'if';
   } else {
+      echo 'else';
     $responsable = array(
     
       "idResponsable"=> "",
@@ -19,10 +21,13 @@
       "relacion" => '',
       "telefono" => '',
       "mail" => '',
-      "observaciones" => ''
+      "obs" => '',
+      "fechaNac" => ''
     );
-    
+
   }
+
+
 ?>
 <div class="breadcrumbs">
             <div class="col-sm-4">
@@ -37,7 +42,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Inicio</a></li>
-                            <li><a href="#">Janij</a></li>
+                            <li><a href="#">Responsable</a></li>
                             <li class="active">Agregar</li>
                         </ol>
                     </div>
@@ -56,8 +61,8 @@
                                 <div class="card-body card-block">
                                     <form action="Janij-Insert.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                                     
-                                        <div class="text-center"> 
-                                            <h1> Responsable de <?php echo $_GET['id'] ?> </h1>
+                                        <div class="text-center mb-3"> 
+                                            <h1> Responsable de <?php echo $janij['nombre'] .' ' .$janij['apellido'] ?> </h1>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nombre</label></div>
@@ -67,23 +72,23 @@
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Apellido</label></div>
                                             <div class="col-12 col-md-9"><input type="text" value="<?php echo $responsable['apellido']; ?>" name="apellido"  class="form-control"></div>
                                         </div>
-                                        <?php if(!isset($_GET['id'])){ ?>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">DNI</label></div>
-                                            <div class="col-12 col-md-9"><input type="text" value="<?php echo $responsable['idJanij']; ?>" name="idJanij"  class="form-control"></div>
-                                        </div>
-                                        <?php } else{?>
-                                            <input type="hidden" name="idJanij" value="<?php echo $responsable['idJanij']; }?>">
+                                        
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Fecha de Nacimiento</label></div>
                                             <div class="col-sm-4">
-                                                <input type="date" name="fechaNac" step="1" min="2000-01-01" value="<?php echo $responsable['fechaNac']; ?>">
+                                                <input type="date" name="fechaNac" step="1" min="1900-01-01" value="<?php echo $responsable['fechaNac']; ?>">
                                             </div> 
                                         </div>
                                         <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Escuela</label></div>
-                                            <div class="col-12 col-md-9"><input type="text" value="<?php echo $responsable['escuela']; ?>" name="escuela"  class="form-control"></div>
-                                        </div>
+                                            <div class="col col-md-3"><label for="select" class=" form-control-label">Relación</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <select name="relacion"  class="form-control">
+                                                    <option value="Madre">Madre</option>
+                                                    <option value="Padre">Padre</option>
+                                                    <option value="Tutor">Tutor</option>
+                                                </select>
+                                            </div>
+                                            </div>
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Teléfono</label></div>
                                             <div class="col-12 col-md-9"><input type="text" value="<?php echo $responsable['telefono']; ?>" name="telefono"  class="form-control"></div>
@@ -94,13 +99,11 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Observaciones</label></div>
-                                            <div class="col-12 col-md-9"><textarea name="observaciones"  rows="9"  class="form-control"><?php echo $responsable['observaciones']; ?></textarea></div>
+                                            <div class="col-12 col-md-9"><textarea name="obs"  rows="9"  class="form-control"><?php echo $responsable['obs']; ?></textarea></div>
                                         </div>
                                         <div class="card-footer">
                                             <div class="row">
-                                               
-                                                <input type="hidden" name="kvutza" value="<?php echo $_SESSION['kvutza'] ?>">
-                                        
+                                                                                       
                                                 <div class="col-lg-12 text-right">
                                                 <?php
                                                

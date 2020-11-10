@@ -43,9 +43,16 @@
                     <div class="col-md-12">
                         <div class="col-lg-12">
                             <div class="card">
+                                <?php if (count($responsables) < 2){?>
                                     <div class="col-md-12 mt-3 text-right">
                                         <a href="Responsable-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Responsable</a>
                                     </div>
+                                <?php } else { ?>
+                                    <div class="col-md-12 mt-3 text-right">
+                                        <a href="Responsable-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-success disabled"><i class="fa fa-plus"></i> Agregar Responsable</a>
+                                    </div>
+                                <?php } ?>
+
                                 <div class="card-body card-block">
                                     
                                         <div class="text-center">
@@ -86,12 +93,17 @@
                                                 <div class="row form-group ml-3 mt-3">
                                                     <p><strong>Observaciones: </strong><?php echo $janij['observaciones'] ?></p>
                                                 </div>
-                                        <?php }
+                                        <?php } ?>
+                                        
+                                        <div class="card-footer text-right">
+                                            <a href="Janij-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Janij</a>
+                                        </div>
 
-                                        for ($i = 0; $i < count($responsables); $i++) 
-                                        {   ?>
-                                            <div class="ml-3">
-                                                <h3 class="">Datos Responsable: <?php echo $responsables[$i]['relacion'] ?></h3>
+
+                                        <?php for ($i = 0; $i < count($responsables); $i++) 
+                                        {   ?> 
+                                            <div class="ml-3 mt-3">
+                                                <h3 class="">Datos <?php echo $responsables[$i]['relacion'] ?></h3>
                                             </div>
 
                                             <div class="row form-group ml-3 mt-3 mr-2">
@@ -103,23 +115,21 @@
                                             <div class="row form-group ml-3 mt-3 mr-2">
                                                 <p><strong>Mail: </strong><?php echo $responsables[$i]['mail'] ?></p>
                                             </div>
-
-                                            <?php if ($responsables[$i]['observaciones'] != NULL){?>
-                                                <div class="row form-group ml-3 mt-3">
-                                                    <p><strong>Observaciones: </strong><?php echo $responsables[$i]['observaciones'] ?></p>
-                                                </div>
-                                            <?php } ?>
                                             
-
+                                            <?php if ($responsables[$i]['obs'] != NULL){?>
+                                                <div class="row form-group ml-3 mt-3">
+                                                    <p><strong>Observaciones: </strong><?php echo $responsables[$i]['obs'] ?></p>
+                                                </div>
+                                                
+                                            <?php } ?>
+                                            <div class="card-footer text-right">
+                                                <a href="Responsable-AgregarEditar.php?j=<?php echo $janij['idJanij']?>&r=<?php echo $responsables[$i]['idResponsable']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                            </div>
 
 
                                         <?php } ?>
                                         
                                         
-                                        <div class="card-footer text-right">
-                                            <a href="Janij-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Janij</a>
-                                            <a href="Responsable-AgregarEditar.php?=id<?php echo $janij['idJanij']?>" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Responsable(s)</a>
-                                        </div>
 
 
                                 </div>
