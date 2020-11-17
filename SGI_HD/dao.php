@@ -127,11 +127,10 @@ function obtenerRespPorID($id){
    $pdo = connect();
 
    $stmt = $pdo -> prepare("CALL obtenerRespPorID($id)"); 
-
+   $stmt -> execute();
    
    return $stmt -> fetch();
 }
-
 
 
 

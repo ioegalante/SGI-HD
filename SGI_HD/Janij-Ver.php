@@ -45,11 +45,11 @@
                             <div class="card">
                                 <?php if (count($responsables) < 2){?>
                                     <div class="col-md-12 mt-3 text-right">
-                                        <a href="Responsable-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Responsable</a>
+                                        <a href="Responsable-AgregarEditar.php?j=<?php echo $janij['idJanij']?>" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Responsable</a>
                                     </div>
                                 <?php } else { ?>
                                     <div class="col-md-12 mt-3 text-right">
-                                        <a href="Responsable-AgregarEditar.php?id=<?php echo $janij['idJanij']?>" class="btn btn-success disabled"><i class="fa fa-plus"></i> Agregar Responsable</a>
+                                        <a href="Responsable-AgregarEditar.php?j=<?php echo $janij['idJanij']?>" class="btn btn-success disabled"><i class="fa fa-plus"></i> Agregar Responsable</a>
                                     </div>
                                 <?php } ?>
 
