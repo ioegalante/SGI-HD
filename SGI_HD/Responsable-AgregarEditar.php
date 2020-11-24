@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">DNI</label></div>
-                                            <div class="col-12 col-md-9"><input type="text" value="<?php echo $responsable['idResponsable']; ?>" name="idresponsable"  class="form-control"></div>
+                                            <div class="col-12 col-md-9"><input type="text" value="<?php echo $responsable['idResponsable']; ?>" name="idResponsable"  class="form-control"></div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Fecha de Nacimiento</label></div>
@@ -109,7 +109,7 @@
                                                                                        
                                                 <div class="col-lg-12 text-right">
                                                 <input type="hidden" name="dniViejo" value="<?php echo $responsable['idResponsable'] ?>">
-                                                <input type="hidden" name="idJanij" value="<?php echo $janij?>">
+                                                <input type="hidden" name="idJanij" value="<?php echo $janij['idJanij']?>">
                                                 <?php
                                                
                                                 if (isset($_GET['r'])) {
